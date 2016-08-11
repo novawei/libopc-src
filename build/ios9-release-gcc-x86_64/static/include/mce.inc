@@ -1,0 +1,7 @@
+build/ios9-release-gcc-x86_64/static/include/build_config_platform_zlib-1.2.5
+third_party/zlib-1.2.5
+build/ios9-release-gcc-x86_64/static/include/build_config_platform_libxml2-2.7.7
+third_party/libxml2-2.7.7/include
+build/ios9-release-gcc-x86_64/static/include/build_plib_config_platform_plib_include
+config
+.

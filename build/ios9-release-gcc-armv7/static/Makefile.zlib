@@ -1,0 +1,55 @@
+# Generated.
+CC=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
+AR=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar
+CFLAGS=-g -Os -arch armv7 -fno-exceptions -fvisibility=hidden -mthumb
+CFLAGS_C=-std=c99
+CFLAGS_CPP=-fno-rtti
+CPPFLAGS=-D__arm__ -DNDEBUG -D_NDEBUG -D__IPHONE_OS_VERSION_MIN_REQUIRED=80000 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk
+LDFLAGS=-framework Foundation -framework UIKit -framework CoreText -framework CoreGraphics -framework OpenGLES -framework QuartzCore -lstdc++
+BUILD_DIR=.
+SRC_DIR=../../..
+
+.PHONY: all clean
+
+# library zlib
+all: $(BUILD_DIR)/libzlib.a
+
+objs_zlib=\
+     $(BUILD_DIR)/third_party/zlib-1.2.5/adler32.o\
+     $(BUILD_DIR)/third_party/zlib-1.2.5/compress.o\
+     $(BUILD_DIR)/third_party/zlib-1.2.5/crc32.o\
+     $(BUILD_DIR)/third_party/zlib-1.2.5/deflate.o\
+     $(BUILD_DIR)/third_party/zlib-1.2.5/gzread.o\
+     $(BUILD_DIR)/third_party/zlib-1.2.5/gzwrite.o\
+     $(BUILD_DIR)/third_party/zlib-1.2.5/gzclose.o\
+     $(BUILD_DIR)/third_party/zlib-1.2.5/infback.o\
+     $(BUILD_DIR)/third_party/zlib-1.2.5/inffast.o\
+     $(BUILD_DIR)/third_party/zlib-1.2.5/inflate.o\
+     $(BUILD_DIR)/third_party/zlib-1.2.5/inftrees.o\
+     $(BUILD_DIR)/third_party/zlib-1.2.5/trees.o\
+     $(BUILD_DIR)/third_party/zlib-1.2.5/uncompr.o\
+     $(BUILD_DIR)/third_party/zlib-1.2.5/zutil.o\
+     
+zlib_includes= -I../../config/ios9-release-gcc-armv7/zlib-1.2.5 -I../../../third_party/zlib-1.2.5
+
+$(BUILD_DIR)/third_party/zlib-1.2.5/%.o: $(SRC_DIR)/third_party/zlib-1.2.5/%.cc
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(CFLAGS_CPP) $(CPPFLAGS) $(zlib_includes) -c "$<" -o "$@"
+
+$(BUILD_DIR)/third_party/zlib-1.2.5/%.o: $(SRC_DIR)/third_party/zlib-1.2.5/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(CFLAGS_C) $(CPPFLAGS) $(zlib_includes) -c "$<" -o "$@"
+
+$(BUILD_DIR)/third_party/zlib-1.2.5/%.o: $(SRC_DIR)/third_party/zlib-1.2.5/%.s
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(CFLAGS_C) $(CPPFLAGS) $(zlib_includes) -c "$<" -o "$@"
+
+$(BUILD_DIR)/third_party/zlib-1.2.5/%.o: $(SRC_DIR)/third_party/zlib-1.2.5/%.cpp
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(CFLAGS_CPP) $(CPPFLAGS) $(zlib_includes) -c "$<" -o "$@"
+
+$(BUILD_DIR)/libzlib.a: $(objs_zlib)
+	$(AR) -rcs $(BUILD_DIR)/libzlib.a $(objs_zlib)
+
+clean:
+	rm -rf $(BUILD_DIR)/libzlib.a $(BUILD_DIR)/libzlib.so $(objs_zlib)

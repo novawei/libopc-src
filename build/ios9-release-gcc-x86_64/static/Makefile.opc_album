@@ -1,0 +1,43 @@
+# Generated.
+CC=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
+AR=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar
+CFLAGS=-g -Os -arch x86_64 -fno-exceptions -fvisibility=hidden
+CFLAGS_C=-std=c99
+CFLAGS_CPP=-fno-rtti
+CPPFLAGS=-DNDEBUG -D_NDEBUG -D__IPHONE_OS_VERSION_MIN_REQUIRED=80000 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator9.2.sdk/
+LDFLAGS=-framework Foundation -framework UIKit -framework CoreText -framework CoreGraphics -framework OpenGLES -framework QuartzCore -lstdc++
+BUILD_DIR=.
+SRC_DIR=../../..
+
+.PHONY: all clean
+
+# tool opc_album
+all: $(BUILD_DIR)/opc_album
+
+objs_opc_album=\
+     $(BUILD_DIR)/sample/opc_album.o\
+     
+opc_album_includes= -I../../config/ios9-release-gcc-x86_64/zlib-1.2.5 -I../../../third_party/zlib-1.2.5 -I../../config/ios9-release-gcc-x86_64/libxml2-2.7.7 -I../../../third_party/libxml2-2.7.7/include -I../../plib/config/ios9-release-gcc-x86_64/plib/include -I../../../config -I../../..
+
+$(BUILD_DIR)/sample/%.o: $(SRC_DIR)/sample/%.cc
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(CFLAGS_CPP) $(CPPFLAGS) $(opc_album_includes) -c "$<" -o "$@"
+
+$(BUILD_DIR)/sample/%.o: $(SRC_DIR)/sample/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(CFLAGS_C) $(CPPFLAGS) $(opc_album_includes) -c "$<" -o "$@"
+
+$(BUILD_DIR)/sample/%.o: $(SRC_DIR)/sample/%.s
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(CFLAGS_C) $(CPPFLAGS) $(opc_album_includes) -c "$<" -o "$@"
+
+$(BUILD_DIR)/sample/%.o: $(SRC_DIR)/sample/%.cpp
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(CFLAGS_CPP) $(CPPFLAGS) $(opc_album_includes) -c "$<" -o "$@"
+
+opc_album_ld= $(BUILD_DIR)/libopc.a $(BUILD_DIR)/libmce.a $(BUILD_DIR)/libzlib.a $(BUILD_DIR)/libxml.a $(BUILD_DIR)/libplib.a
+$(BUILD_DIR)/opc_album: $(objs_opc_album) $(opc_album_ld)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -o $(BUILD_DIR)/opc_album $(objs_opc_album)  $(BUILD_DIR)/libopc.a $(BUILD_DIR)/libmce.a $(BUILD_DIR)/libzlib.a $(BUILD_DIR)/libxml.a $(BUILD_DIR)/libplib.a $(LDFLAGS)
+
+clean:
+	rm -f $(BUILD_DIR)/opc_album $(objs_opc_album)

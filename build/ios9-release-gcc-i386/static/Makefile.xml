@@ -1,0 +1,87 @@
+# Generated.
+CC=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
+AR=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar
+CFLAGS=-g -Os -arch i386 -fno-exceptions -fvisibility=hidden
+CFLAGS_C=-std=c99
+CFLAGS_CPP=-fno-rtti
+CPPFLAGS=-DNDEBUG -D_NDEBUG -D__IPHONE_OS_VERSION_MIN_REQUIRED=80000 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator9.2.sdk/
+LDFLAGS=-framework Foundation -framework UIKit -framework CoreText -framework CoreGraphics -framework OpenGLES -framework QuartzCore -lstdc++
+BUILD_DIR=.
+SRC_DIR=../../..
+
+.PHONY: all clean
+
+# library xml
+all: $(BUILD_DIR)/libxml.a
+
+objs_xml=\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/DOCBparser.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/HTMLparser.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/HTMLtree.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/SAX.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/SAX2.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/c14n.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/catalog.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/chvalid.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/debugXML.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/dict.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/encoding.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/entities.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/error.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/globals.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/hash.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/legacy.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/list.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/nanoftp.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/nanohttp.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/parser.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/parserInternals.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/pattern.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/relaxng.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/schematron.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/threads.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/tree.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/trionan.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/triostr.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/uri.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/valid.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/xinclude.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/xlink.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/xmlIO.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/xmlcatalog.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/xmlmemory.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/xmlmodule.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/xmlreader.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/xmlregexp.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/xmlsave.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/xmlschemas.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/xmlschemastypes.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/xmlstring.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/xmlunicode.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/xmlwriter.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/xpath.o\
+     $(BUILD_DIR)/third_party/libxml2-2.7.7/xpointer.o\
+     
+xml_includes= -I../../config/ios9-release-gcc-i386/libxml2-2.7.7 -I../../../third_party/libxml2-2.7.7/include -I../../../third_party/libxml2-2.7.7/include -I../../../third_party/libxml2-2.7.7 -I../../config/ios9-release-gcc-i386/zlib-1.2.5 -I../../../third_party/zlib-1.2.5
+
+$(BUILD_DIR)/third_party/libxml2-2.7.7/%.o: $(SRC_DIR)/third_party/libxml2-2.7.7/%.cc
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(CFLAGS_CPP) $(CPPFLAGS) $(xml_includes) -c "$<" -o "$@"
+
+$(BUILD_DIR)/third_party/libxml2-2.7.7/%.o: $(SRC_DIR)/third_party/libxml2-2.7.7/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(CFLAGS_C) $(CPPFLAGS) $(xml_includes) -c "$<" -o "$@"
+
+$(BUILD_DIR)/third_party/libxml2-2.7.7/%.o: $(SRC_DIR)/third_party/libxml2-2.7.7/%.s
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(CFLAGS_C) $(CPPFLAGS) $(xml_includes) -c "$<" -o "$@"
+
+$(BUILD_DIR)/third_party/libxml2-2.7.7/%.o: $(SRC_DIR)/third_party/libxml2-2.7.7/%.cpp
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(CFLAGS_CPP) $(CPPFLAGS) $(xml_includes) -c "$<" -o "$@"
+
+$(BUILD_DIR)/libxml.a: $(objs_xml)
+	$(AR) -rcs $(BUILD_DIR)/libxml.a $(objs_xml)
+
+clean:
+	rm -rf $(BUILD_DIR)/libxml.a $(BUILD_DIR)/libxml.so $(objs_xml)

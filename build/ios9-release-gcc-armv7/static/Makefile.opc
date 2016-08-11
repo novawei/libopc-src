@@ -1,0 +1,53 @@
+# Generated.
+CC=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
+AR=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar
+CFLAGS=-g -Os -arch armv7 -fno-exceptions -fvisibility=hidden -mthumb
+CFLAGS_C=-std=c99
+CFLAGS_CPP=-fno-rtti
+CPPFLAGS=-D__arm__ -DNDEBUG -D_NDEBUG -D__IPHONE_OS_VERSION_MIN_REQUIRED=80000 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk
+LDFLAGS=-framework Foundation -framework UIKit -framework CoreText -framework CoreGraphics -framework OpenGLES -framework QuartzCore -lstdc++
+BUILD_DIR=.
+SRC_DIR=../../..
+
+.PHONY: all clean
+
+# library opc
+all: $(BUILD_DIR)/libopc.a
+
+objs_opc=\
+     $(BUILD_DIR)/opc/opc.o\
+     $(BUILD_DIR)/opc/container.o\
+     $(BUILD_DIR)/opc/inputstream.o\
+     $(BUILD_DIR)/opc/outputstream.o\
+     $(BUILD_DIR)/opc/part.o\
+     $(BUILD_DIR)/opc/relation.o\
+     $(BUILD_DIR)/opc/xmlreader.o\
+     $(BUILD_DIR)/opc/xmlwriter.o\
+     $(BUILD_DIR)/opc/zip.o\
+     $(BUILD_DIR)/opc/helper.o\
+     $(BUILD_DIR)/opc/file.o\
+     $(BUILD_DIR)/opc/properties.o\
+     
+opc_includes= -I../../../config -I../../.. -I../../../opc -I../../config/ios9-release-gcc-armv7/zlib-1.2.5 -I../../../third_party/zlib-1.2.5 -I../../config/ios9-release-gcc-armv7/libxml2-2.7.7 -I../../../third_party/libxml2-2.7.7/include -I../../plib/config/ios9-release-gcc-armv7/plib/include -I../../../config -I../../..
+
+$(BUILD_DIR)/opc/%.o: $(SRC_DIR)/opc/%.cc
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(CFLAGS_CPP) $(CPPFLAGS) $(opc_includes) -c "$<" -o "$@"
+
+$(BUILD_DIR)/opc/%.o: $(SRC_DIR)/opc/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(CFLAGS_C) $(CPPFLAGS) $(opc_includes) -c "$<" -o "$@"
+
+$(BUILD_DIR)/opc/%.o: $(SRC_DIR)/opc/%.s
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(CFLAGS_C) $(CPPFLAGS) $(opc_includes) -c "$<" -o "$@"
+
+$(BUILD_DIR)/opc/%.o: $(SRC_DIR)/opc/%.cpp
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(CFLAGS_CPP) $(CPPFLAGS) $(opc_includes) -c "$<" -o "$@"
+
+$(BUILD_DIR)/libopc.a: $(objs_opc)
+	$(AR) -rcs $(BUILD_DIR)/libopc.a $(objs_opc)
+
+clean:
+	rm -rf $(BUILD_DIR)/libopc.a $(BUILD_DIR)/libopc.so $(objs_opc)

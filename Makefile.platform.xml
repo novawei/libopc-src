@@ -1,0 +1,53 @@
+<!--
+ Copyright (c) 2010, Florian Reuter
+ All rights reserved.
+ 
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 
+ * Redistributions of source code must retain the above copyright
+ notice, this list of conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright
+ notice, this list of conditions and the following disclaimer in
+ the documentation and/or other materials provided with the
+ distribution.
+ * Neither the name of Florian Reuter nor the names of its contributors
+ may be used to endorse or promote products derived from this
+ software without specific prior written permission.
+ 
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+ COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ OF THE POSSIBILITY OF SUCH DAMAGE.
+ -->
+<project>
+    <platform name="*-debug-gcc-*" cc="gcc" ar="ar" ld="ld" cflags="-g -fno-exceptions -Wall -ansi -pedantic" cflags_c="-std=gnu99" cflags_cpp="-fno-rtti" cppflags=""/>
+    <platform name="*-release-gcc-*" cc="gcc" ar="ar" ld="ld" cflags="-O3 -fno-exceptions -Wall -ansi -pedantic" cflags_c="-std=gnu99" cflags_cpp="-fno-rtti" cppflags=""/>
+    <platform name="darwin-debug-gcc-*" cc="gcc" ar="ar" ld="ld" cflags="-g -fno-exceptions" cflags_c="-std=c99" cflags_cpp="-fno-rtti" cppflags="-arch x86_64"/>
+    <platform name="darwin-release-gcc-*" cc="gcc" ar="ar" ld="ld" cflags="-O3 -fno-exceptions" cflags_c="-std=c99" cflags_cpp="-fno-rtti" cppflags="-arch x86_64"/>
+    <platform name="*-debug-clang-*" cc="clang" ar="ar" ld="ld" cflags="-g -fno-exceptions" cflags_c="-std=c99" cflags_cpp="-fno-rtti" cppflags=""/>
+    <!-- ios start -->
+    <!-- ios i386 -->
+    <platform name="ios9-debug-gcc-i386" family="ios-debug-gcc-x86" cc="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" ld="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" ar="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar" cflags="-g -O0 -arch i386 -fno-exceptions -fvisibility=hidden -fstack-protector" cflags_c="-std=c99" cflags_cpp="-fno-rtti" cppflags="-D__IPHONE_OS_VERSION_MIN_REQUIRED=80000 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator9.2.sdk/" ldflags="-framework Foundation -framework UIKit -framework CoreText -framework CoreGraphics -framework OpenGLES -framework QuartzCore -lstdc++" host="i386-apple-darwin14"/>
+    <platform name="ios9-release-gcc-i386" family="ios-release-gcc-x86" cc="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" ld="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" ar="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar" cflags="-g -Os -arch i386 -fno-exceptions -fvisibility=hidden" cflags_c="-std=c99" cflags_cpp="-fno-rtti" cppflags="-DNDEBUG -D_NDEBUG -D__IPHONE_OS_VERSION_MIN_REQUIRED=80000 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator9.2.sdk/" ldflags="-framework Foundation -framework UIKit -framework CoreText -framework CoreGraphics -framework OpenGLES -framework QuartzCore -lstdc++" host="i386-apple-darwin14"/>
+    <!-- ios x86_64 -->
+    <platform name="ios9-debug-gcc-x86_64" family="ios-debug-gcc-x86_64" cc="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" ld="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" ar="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar" cflags="-g -O0 -arch x86_64 -fno-exceptions -fvisibility=hidden -fstack-protector" cflags_c="-std=c99" cflags_cpp="-fno-rtti" cppflags="-D__IPHONE_OS_VERSION_MIN_REQUIRED=80000 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator9.2.sdk/" ldflags="-framework Foundation -framework UIKit -framework CoreText -framework CoreGraphics -framework OpenGLES -framework QuartzCore -lstdc++" host="x86_64-apple-darwin14"/>
+    <platform name="ios9-release-gcc-x86_64" family="ios-release-gcc-x86_64" cc="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" ld="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" ar="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar" cflags="-g -Os -arch x86_64 -fno-exceptions -fvisibility=hidden" cflags_c="-std=c99" cflags_cpp="-fno-rtti" cppflags="-DNDEBUG -D_NDEBUG -D__IPHONE_OS_VERSION_MIN_REQUIRED=80000 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator9.2.sdk/" ldflags="-framework Foundation -framework UIKit -framework CoreText -framework CoreGraphics -framework OpenGLES -framework QuartzCore -lstdc++" host="x86_64-apple-darwin14"/>
+    <!-- ios armv7 -->
+    <platform name="ios9-debug-gcc-armv7" family="ios-debug-gcc-arm" cc="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" ld="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" ar="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar" cflags="-g -O0 -arch armv7 -fno-exceptions -fvisibility=hidden -mthumb" cflags_c="-std=c99" cflags_cpp="-fno-rtti" cppflags="-D__arm__ -D__IPHONE_OS_VERSION_MIN_REQUIRED=80000 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk" ldflags="-framework Foundation -framework UIKit -framework CoreText -framework CoreGraphics -framework OpenGLES -framework QuartzCore -lstdc++" host="arm-apple-darwin14"/>
+    <platform name="ios9-release-gcc-armv7" family="ios-release-gcc-arm" cc="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" ld="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" ar="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar" cflags="-g -Os -arch armv7 -fno-exceptions -fvisibility=hidden -mthumb" cflags_c="-std=c99" cflags_cpp="-fno-rtti" cppflags="-D__arm__ -DNDEBUG -D_NDEBUG -D__IPHONE_OS_VERSION_MIN_REQUIRED=80000 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk" ldflags="-framework Foundation -framework UIKit -framework CoreText -framework CoreGraphics -framework OpenGLES -framework QuartzCore -lstdc++" host="arm-apple-darwin14"/>
+    <!-- ios armv64 -->
+    <platform name="ios9-debug-gcc-arm64" family="ios-debug-gcc-arm" cc="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" ld="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" ar="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar" cflags="-g -O0 -arch arm64 -fno-exceptions -fvisibility=hidden -mthumb" cflags_c="-std=c99" cflags_cpp="-fno-rtti" cppflags="-D__arm__ -D__IPHONE_OS_VERSION_MIN_REQUIRED=80000 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk" ldflags="-framework Foundation -framework UIKit -framework CoreText -framework CoreGraphics -framework OpenGLES -framework QuartzCore -lstdc++" host="arm-apple-darwin14"/>
+    <platform name="ios9-release-gcc-arm64" family="ios-release-gcc-arm" cc="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" ld="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" ar="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar" cflags="-g -Os -arch arm64 -fno-exceptions -fvisibility=hidden -mthumb" cflags_c="-std=c99" cflags_cpp="-fno-rtti" cppflags="-D__arm__ -DNDEBUG -D_NDEBUG -D__IPHONE_OS_VERSION_MIN_REQUIRED=80000 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk" ldflags="-framework Foundation -framework UIKit -framework CoreText -framework CoreGraphics -framework OpenGLES -framework QuartzCore -lstdc++" host="arm-apple-darwin14"/>
+    <!-- ios end -->
+    <platform name="android9-debug-gcc-*" cc="/Users/flr/Documents/tmp/android-ndk-r5/toolchains/arm-linux-androideabi-4.4.3/prebuilt/darwin-x86/bin/arm-linux-androideabi-gcc" ar="/Users/flr/Documents/tmp/android-ndk-r5/toolchains/arm-linux-androideabi-4.4.3/prebuilt/darwin-x86/bin/arm-linux-androideabi-ar" ld="/Users/flr/Documents/tmp/android-ndk-r5/toolchains/arm-linux-androideabi-4.4.3/prebuilt/darwin-x86/bin/arm-linux-androideabi-ld" cppflags="--sysroot /Users/flr/Documents/tmp/android-ndk-r5/platforms/android-9/arch-arm" cflags="-fno-exceptions -mthumb" cflags_c="-std=c99" cflags_cpp="-fno-rtti" host="arm-android-linux"/>
+</project>

@@ -1,0 +1,42 @@
+# Generated.
+CC=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
+AR=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar
+CFLAGS=-g -Os -arch armv7 -fno-exceptions -fvisibility=hidden -mthumb
+CFLAGS_C=-std=c99
+CFLAGS_CPP=-fno-rtti
+CPPFLAGS=-D__arm__ -DNDEBUG -D_NDEBUG -D__IPHONE_OS_VERSION_MIN_REQUIRED=80000 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk
+LDFLAGS=-framework Foundation -framework UIKit -framework CoreText -framework CoreGraphics -framework OpenGLES -framework QuartzCore -lstdc++
+BUILD_DIR=.
+SRC_DIR=../../..
+
+.PHONY: all clean
+
+# library plib
+all: $(BUILD_DIR)/libplib.a
+
+objs_plib=\
+     $(BUILD_DIR)/plib/source/plib.o\
+     
+plib_includes= -I../../plib/config/ios9-release-gcc-armv7/plib/include -I../../../plib
+
+$(BUILD_DIR)/plib/source/%.o: $(SRC_DIR)/plib/source/%.cc
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(CFLAGS_CPP) $(CPPFLAGS) $(plib_includes) -c "$<" -o "$@"
+
+$(BUILD_DIR)/plib/source/%.o: $(SRC_DIR)/plib/source/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(CFLAGS_C) $(CPPFLAGS) $(plib_includes) -c "$<" -o "$@"
+
+$(BUILD_DIR)/plib/source/%.o: $(SRC_DIR)/plib/source/%.s
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(CFLAGS_C) $(CPPFLAGS) $(plib_includes) -c "$<" -o "$@"
+
+$(BUILD_DIR)/plib/source/%.o: $(SRC_DIR)/plib/source/%.cpp
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(CFLAGS_CPP) $(CPPFLAGS) $(plib_includes) -c "$<" -o "$@"
+
+$(BUILD_DIR)/libplib.a: $(objs_plib)
+	$(AR) -rcs $(BUILD_DIR)/libplib.a $(objs_plib)
+
+clean:
+	rm -rf $(BUILD_DIR)/libplib.a $(BUILD_DIR)/libplib.so $(objs_plib)
