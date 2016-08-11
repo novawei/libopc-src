@@ -1,5 +1,5 @@
 # libopc-src
-libopc[http://libopc.codeplex.com]
+[libopc](http://libopc.codeplex.com)
 
 # issuses
 1. changed Makefile.platform.xml, replace all archs needed for ios9, and change `cc` `ld` and `ar` with the new Xcode ToolChain.
