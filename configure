@@ -53,6 +53,7 @@ LIBXMLCONFIG="--without-c14n \
 --without-docbook  \
 --without-fexceptions \
 --without-ftp \
+--without-debug \
 --without-history  \
 --without-html \
 --without-http \
@@ -65,7 +66,7 @@ LIBXMLCONFIG="--without-c14n \
 --without-python \
 --with-reader \
 --without-regexps \
---without-sax1 \
+--with-sax1 \
 --without-schemas \
 --without-schematron \
 --without-threads \
@@ -73,7 +74,7 @@ LIBXMLCONFIG="--without-c14n \
 --without-valid \
 --with-writer \
 --without-xinclude \
---without-xpath \
+--with-xpath \
 --without-xptr \
 --without-modules \
 --without-zlib"
